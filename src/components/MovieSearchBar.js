@@ -41,11 +41,12 @@ const MovieSearchBar = (props) => {
                 value={keyword}
                 onChange={handleChange}
             />
-            <div className="movies_results_found">
-                {results.map(movie => {
-                    return <MovieInfo movie={movie} handleClick={handleClick} />
-                })}
-            </div>
+            {isLoading ? <div className="loader" /> :
+                <div className="movies_results_found">
+                    {results.map(movie => {
+                        return <MovieInfo movie={movie} handleClick={handleClick} />
+                    })}
+                </div>}
         </section>
     )
 }
