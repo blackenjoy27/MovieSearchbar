@@ -4,8 +4,9 @@ import styled from "styled-components"
 const WrapperDiv = styled.div`
     display:flex;
     flex-direction:column;
-    background-color:#1e1e1e;
+    background-color:#C0D8C0;
     height:100vh;
+
 `
 
 const MovieSearchPage = () => {

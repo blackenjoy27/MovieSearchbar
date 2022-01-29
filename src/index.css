@@ -136,3 +136,64 @@ table {
 }
 
 /* background-image: url("https://static-wmwm.warnermediacdn.com/images/2021-09/01_ei_report_main_header.png"); */
+.movies-bank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80vw;
+  margin: 2rem auto;
+}
+.movie_keyword_searchbar input {
+  font-size: 3rem;
+  width: 70vw;
+  height: 3rem;
+  color: #fff;
+}
+
+.form_submit_btn {
+  border: 3px solid;
+  font-size: 3rem;
+  height: 100%;
+}
+
+.movies_results_found {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.movies_results_found::-webkit-scrollbar {
+  width: 12px;
+}
+.movies_results_found::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-radius: 10px;
+}
+.movies_results_found::-webkit-scrollbar-track {
+  background-color: #c0d8c0;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+.movie_name {
+  font-size: 2rem;
+}
+.movie_detail {
+  display: flex;
+}
+.movie_release_year {
+  font-size: 1rem;
+}
+.movie-search-icon {
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: 2s ease-in-out;
+}
+.movie-search-icon path {
+  fill: grey;
+}
