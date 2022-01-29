@@ -1,9 +1,9 @@
-import MovieSearchBar from "./components/MovieSearchBar";
+import MovieSearchPage from "./components/MovieSearchPage";
 
 function App() {
   return (
     <div className="app">
-      <MovieSearchBar />
+      <MovieSearchPage />
     </div>
   );
 }
