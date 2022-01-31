@@ -44,7 +44,7 @@ const MovieSearchBar = (props) => {
             {isLoading ? <div className="loader" /> :
                 <div className="movies_results_found">
                     {results.map(movie => {
-                        return <MovieInfo movie={movie} handleClick={handleClick} />
+                        return <MovieInfo key={movie._id} movie={movie} handleClick={handleClick} />
                     })}
                 </div>}
         </section>
