@@ -31,7 +31,7 @@ const MovieSearchBar = (props) => {
         window.open(`https://www.google.com/search?q=${title}`).focus();
     }
     return (
-        <section className="movies-bank">
+        <section className="movies-bank" data-testid="movies-bank">
             <TextField
                 className="movie_keyword_searchbar"
                 id="standard-basic"
