@@ -1,35 +1,42 @@
-import { useState, useEffect } from "react";
-import TextField from '@mui/material/TextField';
+import { useState, useEffect, useCallback } from "react";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
 import debounce from "lodash.debounce";
 import MovieInfo from "./MovieInfo";
-
 
 const MovieSearchBar = (props) => {
     const [keyword, setKeyword] = useState("");
     const [results, setResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const debounceFn = useCallback(
+        debounce((keyword) => {
+            setIsLoading(true);
+            axios
+                .post("http://localhost:4000/api/movies", { keyword })
+                .then(({ data }) => {
+                    console.log("Trigger");
+                    setIsLoading(false);
+                    setResults(data);
+                });
+        }, 2000),
+        []
+    );
+
     useEffect(() => {
         if (keyword.trim()) {
-            debounce(() => {
-                setIsLoading(true);
-                axios.post("http://localhost:4000/api/movies", { keyword })
-                    .then(({ data }) => {
-                        setIsLoading(false);
-                        setResults(data);
-                    })
-            }, 2000)();
+            debounceFn(keyword);
         } else {
             setResults([]);
         }
-    }, [keyword])
+    }, [keyword]);
+
     const handleChange = (e) => {
         setKeyword(e.target.value);
-    }
+    };
     const handleClick = (title) => {
         window.open(`https://www.google.com/search?q=${title}`).focus();
-    }
+    };
     return (
         <section className="movies-bank" data-testid="movies-bank">
             <TextField
@@ -41,14 +48,23 @@ const MovieSearchBar = (props) => {
                 value={keyword}
                 onChange={handleChange}
             />
-            {isLoading ? <div className="loader" /> :
+            {isLoading ? (
+                <div className="loader" />
+            ) : (
                 <div className="movies_results_found">
-                    {results.map(movie => {
-                        return <MovieInfo key={movie._id} movie={movie} handleClick={handleClick} />
+                    {results.map((movie) => {
+                        return (
+                            <MovieInfo
+                                key={movie._id}
+                                movie={movie}
+                                handleClick={handleClick}
+                            />
+                        );
                     })}
-                </div>}
+                </div>
+            )}
         </section>
-    )
-}
+    );
+};
 
 export default MovieSearchBar;
